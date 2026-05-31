@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adrian Flores — Financial Operations & Platform Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Lato:wght@300;400;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #090C13;
+    --surface:   #0F1420;
+    --surface2:  #161D2E;
+    --border:    #1E2A3E;
+    --text:      #E2E8F5;
+    --muted:     #7A8AA0;
+    --accent:    #3D7FE8;
+    --gold:      #C9A55A;
+    --white:     #FFFFFF;
+    --font-head: 'Josefin Sans', sans-serif;
+    --font-body: 'Lato', sans-serif;
+    --font-mono: 'Fira Code', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ───────────────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: rgba(9, 12, 19, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--font-head);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--white);
+    text-transform: uppercase;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+
+  .nav-links a {
+    font-family: var(--font-head);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ──────────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(61,127,232,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: 30%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(201,165,90,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner { max-width: 900px; }
+
+  .hero-tag {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.2s;
+  }
+
+  .hero-name {
+    font-family: var(--font-head);
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.0;
+    color: var(--white);
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.35s;
+  }
+
+  .hero-title {
+    font-family: var(--font-head);
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.5s;
+  }
+
+  .hero-desc {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 640px;
+    line-height: 1.8;
+    margin-bottom: 52px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.65s;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.8s;
+  }
+
+  .btn-primary {
+    font-family: var(--font-head);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--accent);
+    border: none;
+    padding: 16px 36px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: #2a6fd4; transform: translateY(-2px); }
+
+  .btn-outline {
+    font-family: var(--font-head);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text);
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 16px 36px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  .hero-stats {
+    position: absolute;
+    right: 60px;
+    bottom: 80px;
+    display: flex;
+    gap: 48px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 1s;
+  }
+
+  .stat { text-align: right; }
+
+  .stat-num {
+    font-family: var(--font-head);
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .stat-num span { color: var(--accent); }
+
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* ── SECTIONS ──────────────────────────────────────────── */
+  section { padding: 100px 60px; }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: var(--font-head);
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 60px;
+  }
+
+  .section-title em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  /* ── ABOUT ─────────────────────────────────────────────── */
+  #about { background: var(--surface); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    max-width: 1100px;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: 24px;
+  }
+
+  .about-text p strong {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .about-details { display: flex; flex-direction: column; gap: 24px; }
+
+  .detail-item {
+    border-left: 2px solid var(--border);
+    padding-left: 20px;
+  }
+
+  .detail-item:hover { border-left-color: var(--accent); }
+
+  .detail-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .detail-value {
+    font-family: var(--font-head);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  /* ── EXPERIENCE ────────────────────────────────────────── */
+  #experience { background: var(--bg); }
+
+  .exp-list { display: flex; flex-direction: column; gap: 4px; max-width: 900px; }
+
+  .exp-item {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: border-color 0.2s;
+    cursor: pointer;
+  }
+
+  .exp-item:hover { border-color: var(--accent); }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 32px;
+  }
+
+  .exp-left { display: flex; align-items: center; gap: 20px; }
+
+  .exp-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .exp-dot.gold { background: var(--gold); }
+
+  .exp-company {
+    font-family: var(--font-head);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .exp-role {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .exp-date {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  .exp-body {
+    padding: 0 32px 28px 62px;
+    display: none;
+  }
+
+  .exp-item.open .exp-body { display: block; }
+
+  .exp-toggle {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    color: var(--muted);
+    margin-left: 16px;
+    transition: transform 0.2s, color 0.2s;
+    user-select: none;
+  }
+
+  .exp-item.open .exp-toggle { transform: rotate(45deg); color: var(--accent); }
+
+  .exp-bullets { list-style: none; }
+
+  .exp-bullets li {
+    font-size: 14px;
+    color: var(--muted);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.7;
+  }
+
+  .exp-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 18px;
+    width: 6px; height: 1px;
+    background: var(--accent);
+  }
+
+  .exp-bullets li:last-child { border-bottom: none; }
+
+  .exp-bullets li strong { color: var(--text); }
+
+  /* ── PROJECTS ──────────────────────────────────────────── */
+  #projects { background: var(--surface); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    max-width: 1100px;
+  }
+
+  .project-card {
+    background: var(--surface2);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+    border: 1px solid var(--border);
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .project-card:hover::before { transform: scaleX(1); }
+  .project-card:hover { background: #1a2236; }
+
+  .project-card.gold-accent::before { background: var(--gold); }
+
+  .project-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .project-title {
+    font-family: var(--font-head);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+
+  .project-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+
+  .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(61,127,232,0.3);
+    padding: 4px 10px;
+  }
+
+  .tag.gold { color: var(--gold); border-color: rgba(201,165,90,0.3); }
+
+  .project-stat {
+    position: absolute;
+    bottom: 32px; right: 32px;
+    font-family: var(--font-head);
+    font-size: 28px;
+    font-weight: 700;
+    color: rgba(61,127,232,0.15);
+    line-height: 1;
+  }
+
+  /* ── SKILLS ────────────────────────────────────────────── */
+  #skills { background: var(--bg); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 1000px;
+  }
+
+  .skill-group-title {
+    font-family: var(--font-head);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  .pill {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .pill:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── CONTACT ───────────────────────────────────────────── */
+  #contact {
+    background: var(--surface);
+    text-align: center;
+  }
+
+  .contact-inner { max-width: 600px; margin: 0 auto; }
+
+  .contact-tagline {
+    font-size: 17px;
+    color: var(--muted);
+    margin-bottom: 48px;
+    line-height: 1.8;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 56px;
+  }
+
+  .contact-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+
+  .contact-link:hover { transform: translateY(-4px); }
+
+  .contact-link-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .contact-link-value {
+    font-family: var(--font-head);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .contact-link:hover .contact-link-value { color: var(--accent); }
+
+  /* ── FOOTER ────────────────────────────────────────────── */
+  footer {
+    background: var(--bg);
+    padding: 28px 60px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer span {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1.5px;
+  }
+
+  /* ── ANIMATIONS ────────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    section { padding: 70px 24px; }
+    .hero { padding: 120px 24px 200px; }
+    .hero-stats { right: 24px; gap: 24px; }
+    .stat-num { font-size: 26px; }
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Adrian <span>Flores</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-tag">Financial Operations &amp; Platform Development</div>
+    <h1 class="hero-name">Adrian<br>Flores</h1>
+    <div class="hero-title">Operator &nbsp;/&nbsp; Builder &nbsp;/&nbsp; Problem Solver</div>
+    <p class="hero-desc">
+      Seven years building systems, owning problems, and sitting at the intersection of teams that do not naturally speak the same language — at PIMCO across $3T+ AUM environments. I do my best work when the problem is hard and there is no one else in line to solve it.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">7<span>+</span></div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">$3<span>T+</span></div>
+      <div class="stat-label">AUM Environments</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">35<span>+</span></div>
+      <div class="stat-label">Initiatives in H1 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About Me</div>
+  <div class="section-title">The work I find<br><em>most interesting</em></div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        Most of my best work has come from problems that did not have an assigned owner. That is how I ended up leading PIMCO's first enterprise BI reporting platform, owning the Bank Loan Amendment system buildout, deploying an AI classification bot, and running Class Action litigation risk — none of those were in the original job description.
+      </p>
+      <p>
+        At PIMCO I sit between <strong>Portfolio Managers, senior leadership, Legal, Compliance, IT, and external vendors</strong> simultaneously. Each group has different priorities and different definitions of success. Getting all of them to one outcome is the job I have been doing every day.
+      </p>
+      <p>
+        I work best in fast-moving environments where the problem is ambiguous, the stakes are real, and the answer requires both analytical rigor and fast execution.
+      </p>
+    </div>
+    <div class="about-details reveal">
+      <div class="detail-item">
+        <div class="detail-label">Current Role</div>
+        <div class="detail-value">Senior Associate, PIMCO</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Location</div>
+        <div class="detail-value">Santa Ana, CA</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Education</div>
+        <div class="detail-value">BSBA Economics, UNLV — 3.75 GPA</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Certifications</div>
+        <div class="detail-value">SIE &nbsp;|&nbsp; Google Data Analytics &nbsp;|&nbsp; CFA L1 (In Progress)</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Clearance</div>
+        <div class="detail-value">US Person — Eligible for Security Clearance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Work History</div>
+  <div class="section-title">Where I've <em>built</em></div>
+  <div class="exp-list">
+
+    <div class="exp-item open reveal" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <div class="exp-left">
+          <div class="exp-dot"></div>
+          <div>
+            <div class="exp-company">PIMCO</div>
+            <div class="exp-role">Senior Associate &nbsp;·&nbsp; Internal Strategy &amp; Operations</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px">
+          <div class="exp-date">Nov 2024 — Present</div>
+          <div class="exp-toggle">+</div>
+        </div>
+      </div>
+      <div class="exp-body">
+        <ul class="exp-bullets">
+          <li>Business-side project lead for PIMCO's proprietary <strong>Bank Loan Amendment platform</strong> — directing IT development, managing vendors (FIS / Octus), accountable for Q4 2026 delivery.</li>
+          <li>Co-led build of <strong>Inv Ops BI</strong>, PIMCO's first enterprise Power BI reporting platform — six modules tracking 1,600+ amendments, $1.6B+ in active daily positions, and 360+ class action cases.</li>
+          <li>Built an <strong>AI classification bot</strong> running at 98% preemptive discrepancy detection. Identified the problem, built the solution, deployed it without being asked.</li>
+          <li>Selected to represent Corporate Actions in PIMCO's <strong>Trade Floor Operations Digitization Group</strong> — leading cross-departmental knowledge-sharing sessions firm-wide.</li>
+          <li>Owns weekly metrics cadence across five simultaneous workflows; manages risk oversight across Bank Loan Amendments, Proxy Execution, and Class Action Litigation.</li>
+          <li>Lead peer mentor for the 2026 summer intern cohort. Selected by leadership to sit outside the formal management chain.</li>
+          <li>Drove <strong>35+ strategic initiatives</strong> in H1 2026. Most landed on the desk because they did not fit cleanly into anyone else's role.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <div class="exp-left">
+          <div class="exp-dot gold"></div>
+          <div>
+            <div class="exp-company">LPL Financial</div>
+            <div class="exp-role">Analyst &nbsp;/&nbsp; Associate Analyst &nbsp;/&nbsp; Sr. Operations Specialist &nbsp;/&nbsp; Corporate Actions Specialist</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px">
+          <div class="exp-date">Feb 2019 — Nov 2024</div>
+          <div class="exp-toggle">+</div>
+        </div>
+      </div>
+      <div class="exp-body">
+        <ul class="exp-bullets">
+          <li>Led a major system migration with no established playbook: wrote requirements documentation, built test scripts, ran back-testing, onboarded teams. <strong>Zero operational disruption</strong> during cutover.</li>
+          <li>Built VBA automations for corporate actions and bond allocation workflows delivering <strong>200%+ time savings</strong>. Identified the problem, built the solution, drove adoption.</li>
+          <li>Cleared <strong>90%+ of reconciliation discrepancies</strong> within SLA across DTC, foreign depositories, brokers, and internal teams.</li>
+          <li>Led departmental training across mandatory/voluntary events, BNY processes, and platform tools (Xsprisa, Etran, BETA).</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Key Projects</div>
+  <div class="section-title">Things I <em>built</em></div>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div class="project-num">01 / PLATFORM BUILD</div>
+      <div class="project-title">Bank Loan Amendment Platform</div>
+      <div class="project-desc">
+        A proprietary end-to-end amendment workflow platform that did not exist before I started working on it. Led from requirements definition through active IT development — vendor negotiation, Jira sprint management, budget proposals to senior leadership, and full accountability for Q4 2026 production delivery.
+      </div>
+      <div class="project-tags">
+        <span class="tag">Jira / Agile</span>
+        <span class="tag">Vendor Management</span>
+        <span class="tag">FIS / Octus API</span>
+        <span class="tag">Project Ownership</span>
+      </div>
+      <div class="project-stat">Q4 '26</div>
+    </div>
+
+    <div class="project-card gold-accent reveal">
+      <div class="project-num">02 / DATA INFRASTRUCTURE</div>
+      <div class="project-title">Inv Ops BI — Enterprise Reporting Platform</div>
+      <div class="project-desc">
+        PIMCO's first Investment Operations Power BI platform. Six-module suite tracking 1,600+ amendment records, $1.6B+ in active daily positions, and 360+ class action cases. Built the semantic data layer, data dictionary, LKUP logic, and the firm-wide implementation playbook other departments now follow.
+      </div>
+      <div class="project-tags">
+        <span class="tag gold">Power BI</span>
+        <span class="tag gold">Semantic Layer</span>
+        <span class="tag gold">DAX / SQL</span>
+        <span class="tag gold">Firm-Wide Adoption</span>
+      </div>
+      <div class="project-stat">1,600+</div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">03 / AI & AUTOMATION</div>
+      <div class="project-title">AI Classification Bot</div>
+      <div class="project-desc">
+        Identified an operational gap, scoped the solution, built it, and deployed it without being asked. The bot preemptively detects 98% of discrepancies before they become operational errors, significantly reducing audit review time and risk exposure across the Bank Loan amendment workflow.
+      </div>
+      <div class="project-tags">
+        <span class="tag">AI Classification</span>
+        <span class="tag">98% Accuracy</span>
+        <span class="tag">Risk Reduction</span>
+        <span class="tag">VBA Automation</span>
+      </div>
+      <div class="project-stat">98%</div>
+    </div>
+
+    <div class="project-card gold-accent reveal">
+      <div class="project-num">04 / KNOWLEDGE INFRASTRUCTURE</div>
+      <div class="project-title">Corporate Actions Knowledge Hub</div>
+      <div class="project-desc">
+        Built PIMCO's Corporate Actions institutional knowledge base in SharePoint — migrating all three workflow libraries, creating a 20+ procedure training repository, and structuring the entire platform for Copilot and AI integration. Serves Portfolio Managers, ESG, compliance, legal, and new hires as a self-service resource.
+      </div>
+      <div class="project-tags">
+        <span class="tag gold">SharePoint</span>
+        <span class="tag gold">AI-Ready</span>
+        <span class="tag gold">20+ Procedures</span>
+        <span class="tag gold">Cross-Departmental</span>
+      </div>
+      <div class="project-stat">20+</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Technical &amp; Professional</div>
+  <div class="section-title">What I <em>work with</em></div>
+  <div class="skills-grid">
+    <div class="reveal">
+      <div class="skill-group-title">Data &amp; Analytics</div>
+      <div class="skill-pills">
+        <span class="pill">Power BI</span>
+        <span class="pill">SQL</span>
+        <span class="pill">DAX</span>
+        <span class="pill">Semantic Layer Design</span>
+        <span class="pill">SSRS Migration</span>
+        <span class="pill">KPI Development</span>
+        <span class="pill">Forecasting Models</span>
+        <span class="pill">Data Governance</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="skill-group-title">Project &amp; Operations</div>
+      <div class="skill-pills">
+        <span class="pill">Jira (Agile / Sprints)</span>
+        <span class="pill">End-to-End PM</span>
+        <span class="pill">Decision Logs</span>
+        <span class="pill">Gantt Roadmaps</span>
+        <span class="pill">Risk Mitigation</span>
+        <span class="pill">Vendor Management</span>
+        <span class="pill">Audit-Ready Documentation</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="skill-group-title">Automation &amp; Systems</div>
+      <div class="skill-pills">
+        <span class="pill">VBA Automation</span>
+        <span class="pill">AI Classification Systems</span>
+        <span class="pill">API Integration</span>
+        <span class="pill">RPA / BPA</span>
+        <span class="pill">SharePoint / OneDrive</span>
+        <span class="pill">Copilot Enablement</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="skill-group-title">Financial Operations</div>
+      <div class="skill-pills">
+        <span class="pill">Bank Loan Amendments</span>
+        <span class="pill">Corporate Actions</span>
+        <span class="pill">Proxy Execution</span>
+        <span class="pill">Class Action Litigation</span>
+        <span class="pill">Reconciliation</span>
+        <span class="pill">KYC &amp; Settlement</span>
+        <span class="pill">SEC Reporting</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label" style="text-align:center">Get In Touch</div>
+    <div class="section-title" style="text-align:center">Let's <em>connect</em></div>
+    <p class="contact-tagline reveal">
+      Open to conversations about Business Operations, Program Management, and Financial Operations leadership roles. If you have a hard problem that needs an owner, let's talk.
+    </p>
+    <div class="contact-links reveal">
+      <a href="mailto:adrianb.flores@yahoo.com" class="contact-link">
+        <span class="contact-link-label">Email</span>
+        <span class="contact-link-value">adrianb.flores@yahoo.com</span>
+      </a>
+      <a href="tel:8188231604" class="contact-link">
+        <span class="contact-link-label">Phone</span>
+        <span class="contact-link-value">818-823-1604</span>
+      </a>
+      <a href="https://linkedin.com/in/adrian-flores-0011239966" target="_blank" class="contact-link">
+        <span class="contact-link-label">LinkedIn</span>
+        <span class="contact-link-value">View Profile</span>
+      </a>
+    </div>
+    <a href="#" class="btn-primary reveal">Download Resume</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>ADRIAN FLORES &nbsp;/&nbsp; FINANCIAL OPERATIONS &amp; PLATFORM DEVELOPMENT</span>
+  <span>Santa Ana, CA &nbsp;·&nbsp; 2026</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 100) current = sec.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--accent)' : '';
+    });
+  });
+</script>
+</body>
+</html>
